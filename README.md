@@ -1,1 +1,1 @@
-# Multi-Information X Enforced Dynamic language
+# Multi-Information X Enhanced Dynamic language
