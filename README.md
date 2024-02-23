@@ -1,6 +1,6 @@
 <div align="center">
 
-![mixed](https://github.com/cdcftr-std/mixed/assets/67090055/ed6d86ec-8ec5-46df-b3f7-88aa42e20354 =128x128)
+![mixed](https://github.com/cdcftr-std/mixed/assets/67090055/ed6d86ec-8ec5-46df-b3f7-88aa42e20354){:height="100px" width="100px"}
 
 # Multi-Information X Enhanced Dynamic Language
 
