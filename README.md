@@ -32,3 +32,69 @@ If not, you can get started with MIXED Lang with a little bit preparation. You w
 ### Too busy to prepare by learning 6 languages?
 
 Click [HERE](https://www.youtube.com/watch?v=dQw4w9WgXcQ "Get started with MIXED Lang in only 5 minutes! - YouTube") and get a faster way to get started.
+
+## 用户手册
+### 如何使用 `Mixed` ？
+
+使用如下格式的`cmd` `PowerShell`命令：
+
+```
+<python | python3> mixed.py <<filename>.mixed>
+```
+你将在`/dist/`下看到一个`<filename>.exe`的可执行文件。
+
+如果想看到执行效果，请使用`cmd`或`PowerShell`打开此文件。
+
+### 示例
+
+```
+python3 main/mixed.py code.mixed
+```
+
+## Mixed 语法
+### 关键字
+
+```
+print scan function 
+```
+
+### 语法
+
+#### 注释
+
+`Mixed`的注释与`C` `C++` `Java` `JavaScript`的注释大同小异。
+
+##### 用法
+```
+// 这是一段注释
+```
+##### 示例
+```
+function main() { // 定义函数
+    print("Hello World!") // 打印"Hello World!"
+}
+
+main() //调用函数
+```
+
+#### 函数
+
+##### 用法
+```mixed
+function <function-name>([parameter1, parameter2, ...]) {
+    <command>
+    ...
+}
+
+<function-name>([parameter1, parameter2, ...])
+```
+
+##### 示例
+```mixed
+function main(void) {
+    print(void)
+}
+
+main("Hello World")
+```
+
