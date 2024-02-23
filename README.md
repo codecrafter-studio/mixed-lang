@@ -1,6 +1,6 @@
 <div align="center">
 
-![mixed](https://github.com/cdcftr-std/mixed/assets/67090055/ed6d86ec-8ec5-46df-b3f7-88aa42e20354){:height="100px" width="100px"}
+<img src="icon.png" alt="MIXED Language icon" style="width:256px" />
 
 # Multi-Information X Enhanced Dynamic Language
 
