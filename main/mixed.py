@@ -38,6 +38,7 @@ class Mixed:
 
     def parse_mixed_code(self, code: str):
         new_code = code.replace("function", "def")
+        new_code = new_code.replace("scan", "input")
         new_code = new_code.replace("//", "#")
         new_code = new_code.replace("{", "")
         new_code = new_code.replace("}", "")
@@ -57,6 +58,7 @@ class Mixed:
             raise MixedError(f"Function '{func_name}' not found", self.file)
 
     def execute_mixed_code(self, code):
+        self.parse_mixed_code(code)
         self.build(using_name.replace(".mixed", ".py"))
 
     def build(self, fp):
