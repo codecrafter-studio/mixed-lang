@@ -10,6 +10,8 @@
 
 **MIXED Language (Multi-Information X Enhanced Dynamic Language)** is a new programming language which contains features from every programming language that existed today. The MIXED Language allows you to make your programm dynamically. 
 
+The MIXED Language compiler is based on Python 3, which makes it much easier to maintain.
+
 ## To Get Started
 
 It is easy to get started with MIXED Lang in case you are specialized in all of the fields listed below:
@@ -32,3 +34,11 @@ If not, you can get started with MIXED Lang with a little bit preparation. You w
 ### Too busy to prepare by learning 6 languages?
 
 Click [HERE](https://www.youtube.com/watch?v=dQw4w9WgXcQ "Get started with MIXED Lang in only 5 minutes! - YouTube") and get a faster way to get started.
+
+## Usage
+
+As we have told, MIXED Lang's compiler is based on Python 3. So you should use Python 3 to compile your MIXED Lang code wiht the following command:
+
+```bash
+<python | python3> mixed.py <<filename>.mixed>
+```
