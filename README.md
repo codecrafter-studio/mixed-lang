@@ -23,7 +23,7 @@ It is easy to get started with MIXED Lang in case you are specialized in all of 
 
 If not, you can get started with MIXED Lang with a little bit preparation. You will have to learn some basic stuff by following these steps:
 
-1. Open (Google)[https://google.com/] in your browser. (If you're not able to open it, use Bing instead is also OK.)
+1. Open !(Google)[https://google.com/] in your browser. (If you're not able to open it, use Bing instead is also OK.)
 2. Find an input box in the middle of your screen.
 3. Type `How to learn 6 programming languages in a month` and press <kbd>Enter</kbd>
 4. Look at the first result and take actions. No matter it seems helpful or not.
@@ -31,4 +31,4 @@ If not, you can get started with MIXED Lang with a little bit preparation. You w
 
 ### Too busy to prepare by learning 6 languages?
 
-Click (HERE)[https://www.youtube.com/watch?v=dQw4w9WgXcQ] and get a faster way to get started.
+Click !(HERE)[https://www.youtube.com/watch?v=dQw4w9WgXcQ] and get a faster way to get started.
