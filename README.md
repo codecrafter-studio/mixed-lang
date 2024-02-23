@@ -25,7 +25,7 @@ If not, you can get started with MIXED Lang with a little bit preparation. You w
 
 1. Open (Google)[https://google.com/] in your browser. (If you're not able to open it, use Bing instead is also OK.)
 2. Find an input box in the middle of your screen.
-3. Type `How to learn 6 programming languages in a month` and press <key>Enter</key>
+3. Type `How to learn 6 programming languages in a month` and press <kbd>Enter</kbd>
 4. Look at the first result and take actions. No matter it seems helpful or not.
 5. If you're still looking at this line, please continue learning the listed language. Once you finish learning them, you can continue getting started with MIXED Lang.
 
