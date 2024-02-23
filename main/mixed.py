@@ -1,12 +1,80 @@
+# import types
 import os
 import inspect
-import traceback
 import re
 import sys
+import mixedgui as mg
+from typing import SupportsIndex
+from typing_extensions import Literal
 
 __filename__ = os.path.abspath(inspect.getframeinfo(inspect.stack()[-1][0])[0])
-using_name = sys.argv[1]
+try:
+    using_name = sys.argv[1]
+except:
+    using_name = None
 code_list = []
+type_code = '''
+
+class new Type() {
+    """Mixed Type"""
+
+    function INIT(cls) {
+        cls.__all__ = ['integer', 'string', 'list', 'dictionary']
+        cls.__type__ = None
+    }
+
+    function type(cls) {
+        return print(cls.__type__)
+    }
+}
+
+class new integer(Type, int) {
+    """Integer Type"""
+
+    function INIT(cls) {
+        super().INIT()
+        cls.__type__ = "<class new type: integer at " + str(id(cls)) + ">"
+    }
+
+    function delete(cls) {
+        del cls
+        return None
+    }
+
+    function tobyte(cls) {
+        return super().to_bytes()
+    }
+
+
+class new string(Type, str) {
+    """String Type"""
+
+    function INIT(cls) {
+        super().INIT()
+        cls.__type__ = "<class new type: string at " + str(id(cls)) + ">"
+    }
+
+
+class new List(Type, list) {
+    """List Type"""
+
+    function INIT(cls) {
+        super().INIT()
+        cls.__type__ = "<class new type: List at " + str(id(cls)) + ">"
+    }
+}
+
+
+class new Tuple(Type, tuple) {
+    """Tuple Type"""
+
+    function INIT(cls) {
+        super().INIT()
+        cls.__type__ = "<class new type: Tuple at " + str(id(cls)) + ">"
+    }
+}
+
+'''
 
 
 class MixedError:
@@ -25,6 +93,7 @@ class Mixed:
 
     def __init__(self, file):
         self.file = file
+        self.ret_code = ""
         self.variables = {}
 
     def print(self, *args):
@@ -37,28 +106,53 @@ class Mixed:
         return usr
 
     def parse_mixed_code(self, code: str):
-        new_code = code.replace("function", "def")
-        new_code = new_code.replace("scan", "input")
-        new_code = new_code.replace("//", "#")
-        new_code = new_code.replace("{", "")
-        new_code = new_code.replace("}", "")
-        pattern = r'def\s+\w+\s*\(\s*.*?\s*\)'
-        new_code = re.sub(pattern, lambda x: x.group(0)[:-1] + "): ", new_code)
+        new_code = type_code
+        new_code += code
+
+        new_code = re.sub(r"\bfunction\b", "def", new_code,
+                          flags=re.IGNORECASE)  # "function" -> "def"
+        new_code = re.sub(r"\bscan\b", "input", new_code,
+                          flags=re.IGNORECASE)  # "scan" -> "input"
+        new_code = re.sub(r"//", "#", new_code,
+                          flags=re.IGNORECASE)  # "//" -> "#"
+        new_code = re.sub(r"/\*", "\"\"\"", new_code,
+                          flags=re.IGNORECASE)  # "/*" -> """""
+        new_code = re.sub(r"\*/", "\"\"\"", new_code,
+                          flags=re.IGNORECASE)  # "*/" -> """""
+        new_code = re.sub(r"{", "", new_code, flags=re.IGNORECASE)  # "{" -> ""
+        new_code = re.sub(r"}", "", new_code, flags=re.IGNORECASE)  # "}" -> ""
+        new_code = re.sub(r"\bclass new\b", "class", new_code,
+                          flags=re.IGNORECASE)  # "class new" -> "class"
+        new_code = re.sub(r"\bINIT\b", "__init__", new_code,
+                          flags=re.IGNORECASE)  # "INIT" -> "__init__"
+        new_code = re.sub(r"\bcls\b", "self", new_code,
+                          flags=re.IGNORECASE)  # "cls" -> "self"
+        new_code = re.sub(r"\btrue\b", "True", new_code,
+                          flags=re.IGNORECASE)  # "true" -> "True"
+        new_code = re.sub(r"\bfalse\b", "False", new_code,
+                          flags=re.IGNORECASE)  # "false" -> "False"
+        new_code = re.sub(r"\bnone\b", "None", new_code,
+                          flags=re.IGNORECASE)  # "none" -> "None"
+
+        # 函数和类定义放在单独的一行中
+        pattern_function = r'def\s+(\w+)\s*\(\s*(.*?)\s*\)'
+        pattern_class = r'class\s+(\w+)\s*\(\s*(.*?)\s*\)'
+
+        def replace_function(match):
+            return f'def {match.group(1)}({match.group(2)}):\n'
+
+        def replace_class(match):
+            return f'class {match.group(1)}({match.group(2)}):\n'
+
+        new_code = re.sub(pattern_function, replace_function, new_code)
+        new_code = re.sub(pattern_class, replace_class, new_code)
+
         print(new_code)
-        code_list.append(new_code)
         return new_code
 
-    def execute_code(self, code):
-        exec(code, globals(), self.variables)
-
-    def execute_function(self, func_name):
-        if func_name in self.variables:
-            self.variables[func_name]()
-        else:
-            raise MixedError(f"Function '{func_name}' not found", self.file)
-
     def execute_mixed_code(self, code):
-        self.parse_mixed_code(code)
+        self.ret_code = self.parse_mixed_code(code)
+        code_list.append(self.ret_code)
         self.build(using_name.replace(".mixed", ".py"))
 
     def build(self, fp):
@@ -68,7 +162,7 @@ class Mixed:
             pass
         with open(fp, "w", encoding="utf-8") as pf:
             pf.write(code_list[0])
-        # 使用Pyinstaller进行打包（Mixed编译）
+        # 使用Pyinstaller进行打包（Mixed“编译”）
         os.system(f'pyinstaller -F --log-level=ERROR -i icon.png {fp}')
 
 
@@ -78,7 +172,6 @@ def main(code):
     try:
         mixed.execute_mixed_code(data)
     except (NameError, AttributeError) as e:
-        tb = traceback.extract_tb(e.__traceback__)[-1]
         error_file = os.path.abspath(__filename__)
         return MixedError("Unknown Error", error_file)
     finally:
