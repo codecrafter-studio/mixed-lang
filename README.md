@@ -37,7 +37,7 @@ Click [HERE](https://www.youtube.com/watch?v=dQw4w9WgXcQ "Get started with MIXED
 
 ## Usage
 
-As we have told, MIXED Lang's compiler is based on Python 3. So you should use Python 3 to compile your MIXED Lang code wiht the following command:
+As we have told, MIXED Lang's compiler is based on Python 3. So you should use Python 3 to compile your MIXED Lang code with the following command:
 
 ```bash
 <python | python3> mixed.py <<filename>.mixed>
