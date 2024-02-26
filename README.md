@@ -6,11 +6,11 @@
 
 </div>
 
-## Introducing MIXED Language
+## Introducing MIXED Lang
 
-**MIXED Language (Multi-Information X Enhanced Dynamic Language)** is a new programming language which contains features from every programming language that existed today. The MIXED Language allows you to make your programm dynamically. 
+**MIXED Lang (Multi-Information X Enhanced Dynamic Language)** is a new programming language which contains features from every programming language that existed today. The MIXED Lang allows you to make your programm dynamically. 
 
-The MIXED Language compiler is based on Python 3, which makes it much easier to maintain.
+The MIXED Lang compiler is based on Python 3, which makes it much easier to maintain.
 
 ## To Get Started
 
@@ -29,7 +29,7 @@ If not, you can get started with MIXED Lang with a little bit preparation. You w
 2. Find an input box in the middle of your screen.
 3. Type `How to learn 6 programming languages in a month` and press <kbd>Enter</kbd>
 4. Look at the first result and take actions. No matter it seems helpful or not.
-5. If you're still looking at this line, please continue learning the listed language. Once you finish learning them, you can continue getting started with MIXED Lang.
+5. If you're still looking at this line, please continue learning the listed languages. Once you finish learning them, you can continue getting started with MIXED Lang.
 
 ### Too busy to prepare by learning 6 languages?
 
