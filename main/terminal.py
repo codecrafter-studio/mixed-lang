@@ -8,7 +8,6 @@ How to Use:
 ```
 Other optional parameters:
 `-m`: "TUI" | GUI: Specify whether to use TUI or GUI
-`-s`: "FilePath": the path where the cached file is saved
 `-l`: True | False: indicates whether to use log files
 `-f`: "FilePath": Executes the selected file immediately, sending the output to the terminal
 
@@ -17,12 +16,13 @@ Other optional parameters:
 import mixed
 import tkinter as tk
 import sys
+import datetime
+from tkinter import *
 
 args = sys.argv[1:]
 options = {
     '-m': 'TUI',
-    '-s': '',
-    '-l': 'False',
+    '-l': False,
     '-f': ''
 }
 
@@ -32,22 +32,45 @@ while args:
         options[option] = args.pop(0)
 
 # Get Parameters
-# print("Options:")
-# for key, value in options.items():
-#     print(f"{key}: {value}")
-
 mode = options['-m']
-cache_file_path = options['-s']
 enable_log = options['-l']
 selected_file = options['-f']
 
+def parse_code(mixed_code):
+    m = mixed.Mixed(None)
+    code = m.execute_mixed_command(mixed_code)
+    if code:
+        print(m.execute_mixed_command(code))
+
+if enable_log:
+    log = open("./log.txt", "w", encoding="utf-8")
+
 if mode == 'TUI':
-    print("Mode Select TUI (Default)")
+    if enable_log:
+        log.write(f"{datetime.datetime.now()} - Mode Select TUI (Default)\n")
+    print("Mixed Terminal\nBy CodeCrafter Studios.\n")
+    while True:
+        mixed_code = input("Mixed >>> ")
+        parse_code(mixed_code)
 elif mode == 'GUI':
-    print("Mode Select GUI")
-    ...
+    if enable_log:
+        log.write(f"{datetime.datetime.now()} - Mode Select GUI\n")
+    root = Tk()
+    root.wm_geometry("600x400")
+    root.wm_title("Mixed Terminal")
+    root.config(bg="#000000")
+    root.mainloop()
+else:
+    print(f"Unknown Mode: {mode}")
 
 if selected_file:
     m = mixed.Mixed(selected_file)
     with open(selected_file, "r", encoding="utf-8") as f:
-        m.execute_mixed_code(f)
+        code = m.execute_mixed_command(f)
+        if code:
+            print(m.execute_mixed_command(f))
+
+if enable_log:
+    log.close()
+
+# print(options)

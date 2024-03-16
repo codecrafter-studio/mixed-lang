@@ -136,7 +136,10 @@ class Mixed:
     """Mixed language"""
 
     def __init__(self, file):
-        self.file = file
+        if file:
+            self.file = file
+        else:
+            pass
         self.ret_code = ""
         self.variables = {}
 
@@ -151,7 +154,10 @@ class Mixed:
 
     def parse_mixed_code(self, code: str):
         new_code = type_code
-        new_code += code
+        try:
+            new_code += code.read()
+        except:
+            new_code += code
 
         new_code = re.sub(r"\bfunction\b", "def", new_code,
                           flags=re.IGNORECASE)  # "function" -> "def"
@@ -202,7 +208,10 @@ class Mixed:
     def execute_mixed_command(self, code):
         """Execute Mixed Code"""
         self.ret_code = self.parse_mixed_code(code)
-        return exec(self.ret_code)
+        try:
+            return exec(self.ret_code)
+        except Exception as e:
+            return "Error"
 
     def build(self, fp):
         """Build Code   """
